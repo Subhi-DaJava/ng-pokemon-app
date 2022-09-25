@@ -1,32 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; // importer l'élement Component from @angular/core
 
-@Component({
-  selector: 'app-root',
-  template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center" class="content">
-      <h1>
-        Welcome to {{title}}!
-      </h1>
-      <span style="display: block">{{ title }} app is running!</span>
-      <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-    </div>
-    <h2>Here are some links to help you start: </h2>
-    <ul>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-      </li>
-    </ul>
-    
-  `,
-  styles: []
+import { POKEMONS } from './mock-pokemon-list'; 
+import { Pokemon } from './pokemon';
+@Component({ // construire un comosant web avec Angular, deux options: selector et template, une vue + une classe
+  selector: 'app-root', // donner un nom à notre composant afin d'identifier par la suite, insérer la balise html <app-root>, élément personnalisé, propre balise personnalisé
+  // Définier le code html associé au composant web, avec bactic ``, afficher le title, afficher la list de Pokémons
+  templateUrl: `app.component.html` 
+  
 })
-export class AppComponent {
-  title = 'ng-pokemon-app';
+export class AppComponent implements OnInit{ //initialisation à nos composants 
+  // export : exporter ce composant pour le rend disponible ailleur dans l'application
+  //title = 'application-pokemon-app'; // pousser cette valeur dans la template
+  pokemonList: Pokemon[] = POKEMONS; //Un tableau de Pokémons, un type de Pokemon(typage)
+  pokemonSelected: Pokemon|undefined; // propriété pokemon est un type Pokémon, undefinded, méthode renvoie Pokemon ou undefinded
+  
+  ngOnInit() {
+    console.table(this.pokemonList) // this reference out of the scope 
+    throw new Error('Method not implemented.');
+  } 
+
+  selectPokemon(pokemonId: string) { //Contrat d'interface => event DOM
+    const pokemon: Pokemon|undefined = this.pokemonList.find(pokemon => pokemon.id == +pokemonId); // la méthode de JavaScript pout trouver un prédicat
+    if(pokemon) {
+      console.log(`Vous avez demandé le pokémon: ${pokemon.name}.`);
+      this.pokemonSelected = pokemon;
+    } else {
+      console.log(`Vous avez demandé un pokémon qui n'existe pas.`);
+      this.pokemonSelected = pokemon;
+    }
+    // syntax bactique (ES6) dans une chaîne de charactères où ajouter une variable équivalant de la syntax au-dessous
+    //console.log('Vous avez cliquer sur le pokémon' + pokemonName);
+  }
 }
+ 
