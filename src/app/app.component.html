@@ -1,29 +1,21 @@
 <!-- Mis en page Alt + Maj + F ou Crtl + K +F-->
-<h1>List de Pokémons</h1>
-<p>Afficher tous les noms de Pokémons</p>
-<!-- déclarer une variable référencée dans la template, accès depuis la template
-keyup.enter, seulement quand on appuie la touche Enter, puis retourne le Pokémon-->
-<input #input (keyup.enter)="selectPokemon(input.value)" 
-type="number"
- /> 
- <!-- * une directif structurelle, s'il existe afficher ce paragraph... -->
- <p *ngIf="pokemonSelected">Vous avez selectionné le pokemon: {{pokemonSelected.name}}</p>
- <p *ngIf="!pokemonSelected">Aucun pokémon n'a été trouvé.</p>
-<p *ngFor="let pokemon of pokemonList">{{pokemon.name}}</p> 
+<h1 class="center">List de Pokémons</h1>
 
-<br><br>
-<p>!!!!! Affiher les pokemons one by one, Sans itération  !!!!!!!</p>
-
-<p>{{pokemonList[0].name }}</p>
-<p>{{pokemonList[1].name }}</p>
-<p>{{pokemonList[2].name }}</p>
-<p>{{pokemonList[3].name }}</p>
-<p>{{pokemonList[4].name }}</p>
-<p>{{pokemonList[5].name }}</p>
-<p>{{pokemonList[6].name }}</p>
-<p>{{pokemonList[7].name }}</p>
-<p>{{pokemonList[8].name }}</p>
-<p>{{pokemonList[9].name }}</p>
-<p>{{pokemonList[10].name }}</p>
-<p>{{pokemonList[11].name }}</p> -->
-<button><a alt="add pokemon">Cliquer ce bouton pour ajouter un Pokémon</a></button>
+<div class="container">
+    <div class="row">
+        <!--  if 4 4 4 = 12 unités, else s(small) 6 6 = 12 -->
+        <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
+            <div class="card horizontal" (click)="selectPokemon('pokemon')" pokemonBorderCard="blue">
+                <div class="card-image">
+                    <img [src]="pokemon.picture" alt="pokemon photo">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{pokemon.name}}</p>
+                        <p><small>{{pokemon.created}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
