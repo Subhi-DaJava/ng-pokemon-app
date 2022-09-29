@@ -1,24 +1,10 @@
-<!-- Mis en page Alt + Maj + F ou Crtl + K +F-->
-<h1 class="center">List de Pokémons</h1>
+<!--Coposant racine:  Mis en page Alt + Maj + F ou Crtl + K +F, CSS Materialz-->
+<nav>
+   <div class="nav-wrapper teal">
+    <a href="#" class="brand-logo center">
+        Pokédex
+    </a>
+   </div>
+</nav>
 
-<div class="container">
-    <div class="row">
-        <!--  if 4 4 4 = 12 unités, else s(small) 6 6 = 12 -->
-        <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
-            <div class="card horizontal" (click)="selectPokemon('pokemon')" pokemonBorderCard="blue">
-                <div class="card-image">
-                    <img [src]="pokemon.picture" alt="pokemon photo">
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>{{pokemon.name}}</p>
-                        <p><small>{{pokemon.created | date: "dd/MM/yyyy" }}</small></p> <!-- ajouter un opérateur à droite de la propriété puis le nom de pipe -->
-<!-- plusieurs types --><span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}"> <!-- pipe personalisé-->
-                                {{ type }} <!-- rajouter type dans le rond -->
-                            </span> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<router-outlet></router-outlet> <!-- Créer la relation entre les composants et les templates-->
