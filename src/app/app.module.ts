@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser'; // fournir les élém
 
 import { AppComponent } from './app.component';
 import { BorderCardDirective } from './border-card.directive';
+import { PokemonTypeColorPipe } from './pokemon-type-color.pipe';
 
 @NgModule({ // déclarer le module auprès de Angular
   declarations: [ // une liste des tous les composants 
     AppComponent, 
-    BorderCardDirective 
+    BorderCardDirective, PokemonTypeColorPipe 
   ],
   imports: [
     BrowserModule // importer d'autres modules 
