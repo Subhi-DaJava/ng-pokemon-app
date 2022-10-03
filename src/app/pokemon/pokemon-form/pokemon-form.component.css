@@ -1,0 +1,12 @@
+/*
+    Afficher un bordeur vert à gauch si un champs est requi et valid,
+    Afficher un border rouge à gauch si un champs not valid
+*/
+
+.ng-valid[required] {
+    border-left: 5px solid #42a948;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442 ;
+}

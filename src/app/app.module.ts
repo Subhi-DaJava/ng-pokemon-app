@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PokemonModule } from './pokemon/pokemon.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({ // déclarer le module auprès de Angular
   declarations: [ // une liste des tous les composants 
@@ -13,6 +14,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
   ],
   imports: [
     BrowserModule, // importer d'autres modules 
+    FormsModule, // injecter le FormsModule au niveau de racine
     PokemonModule,
     AppRoutingModule
     

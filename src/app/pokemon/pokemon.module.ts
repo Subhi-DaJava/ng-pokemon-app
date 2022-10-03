@@ -6,8 +6,13 @@ import { BorderCardDirective } from './border-card.directive';
 import { PokemonTypeColorPipe } from './pokemon-type-color.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { PokemonService } from './pokemon.service';
+import { FormsModule } from '@angular/forms';
+import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
+import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 
+// mettre les routes plus spécifiques en haut, les routes globales en bas
 const pokemonRoutes: Routes = [ // une constant, déclarer trois routes, une route par défaut, une URL vide localhost:4200
+    { path: 'edit/pokemon/:id', component:EditPokemonComponent}, // ajouter une route, un chemin pour éditer un pokémon
     { path:'pokemons', component: ListPokemonComponent },
     { path: 'pokemon/:id', component: DetailPokemonComponent }
 ]; 
@@ -17,10 +22,13 @@ const pokemonRoutes: Routes = [ // une constant, déclarer trois routes, une rou
     ListPokemonComponent, 
     DetailPokemonComponent,
     BorderCardDirective,
-    PokemonTypeColorPipe
+    PokemonTypeColorPipe,
+    PokemonFormComponent,
+    EditPokemonComponent
   ],
   imports: [
     CommonModule,
+    FormsModule, // inject le FormsModule au niveau du module Pokémons
     RouterModule.forChild(pokemonRoutes)
   ],
   providers: [PokemonService] // service que pour pokemon module
