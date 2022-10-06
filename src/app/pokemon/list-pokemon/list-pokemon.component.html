@@ -1,6 +1,9 @@
 
 <div class="container">
     <div class="row">
+        <!-- Rajouter le champs de recherche -->
+        <app-search-pokemon></app-search-pokemon>
+
         <!--  if 4 4 4 = 12 unités, else s(small) 6 6 = 12 -->
         <div *ngFor="let pokemon of pokemonList" class="col m4 s6"> <!-- importer la pokemonList dans list-pokemon.component.ts-->
             <div (click)="goToPokemon(pokemon)" class="card horizontal" pokemonBorderCard>

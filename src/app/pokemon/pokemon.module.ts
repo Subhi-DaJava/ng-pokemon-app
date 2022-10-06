@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
+import { SearchPokemonComponent } from './search-pokemon/search-pokemon.component';
 
 // mettre les routes plus spécifiques en haut, les routes globales en bas
 const pokemonRoutes: Routes = [ // une constant, déclarer trois routes, une route par défaut, une URL vide localhost:4200
@@ -27,7 +28,8 @@ const pokemonRoutes: Routes = [ // une constant, déclarer trois routes, une rou
     PokemonTypeColorPipe,
     PokemonFormComponent,
     EditPokemonComponent,
-    AddPokemonComponent
+    AddPokemonComponent,
+    SearchPokemonComponent
   ],
   imports: [
     CommonModule,
