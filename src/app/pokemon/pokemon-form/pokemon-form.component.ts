@@ -9,9 +9,12 @@ import { PokemonService } from '../pokemon.service';
   styleUrls: ['./pokemon-form.component.css']
 })
 export class PokemonFormComponent implements OnInit {
+  // Pokemon est déjà bindé avec la directive NgModele, mis à jour ce pokemon
   @Input() pokemon: Pokemon; // (appliqué pour tout l'appli)Lorqus on utilise app.pokemon.form, il faut passer une propriété d'entrer est Pokemon
 
   types: string[]; // propriété
+
+  isAddForm: boolean;
 
   constructor(
     private pokemonService: PokemonService,
@@ -20,6 +23,7 @@ export class PokemonFormComponent implements OnInit {
   ngOnInit() { // récupérer la liste de Pokémons
     // pokemonTypeList
     this.types = this.pokemonService.getPokemonTypeList();
+    this.isAddForm = this.router.url.includes('add');
   }
 
   hasType(type: string): boolean {
@@ -52,7 +56,17 @@ export class PokemonFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Submit form ! ');
-    this.router.navigate(['/pokemon', this.pokemon.id]); // rediriger sur la page de pokemon qui vient de modifiers
+    if(this.isAddForm) {
+      this.pokemonService.addPokemon(this.pokemon).
+      subscribe((pokemon: Pokemon) => this.router.navigate(['/pokemon', pokemon.id]));
+    }
+    else {
+      this.pokemonService.updatePokemon(this.pokemon)
+      .subscribe(() => this.router.navigate(['/pokemon', this.pokemon.id])
+      // .subscribe(() => this.router.navigate(['/pokemon', this.pokemon.id]), (error) => snackbar error);
+      );
+      //console.log('Submit form ! ');
+      //this.router.navigate(['/pokemon', this.pokemon.id]); // rediriger sur la page de pokemon qui vient de modifiers
+    }
   }
 }
