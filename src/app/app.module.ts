@@ -9,11 +9,12 @@ import { PokemonModule } from './pokemon/pokemon.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({ // déclarer le module auprès de Angular
   declarations: [ // une liste des tous les composants 
     AppComponent, 
-    PageNotFoundComponent 
+    PageNotFoundComponent, LoginComponent 
   ],
   imports: [
     BrowserModule, // importer d'autres modules 
